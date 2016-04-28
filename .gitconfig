@@ -1,0 +1,43 @@
+[credential]
+	helper = osxkeychain
+[filter "hawser"]
+	clean = git hawser clean %f
+	smudge = git hawser smudge %f
+	required = true
+[user]
+	name = Chad Rutherford
+	email = c.ruth544@gmail.com
+	github = ctruth544
+[push]
+	default = current
+[filter "lfs"]
+	clean = git lfs clean %f
+	smudge = git lfs smudge %f
+	required = true
+[color]
+	ui = always
+[color "branch"]
+	current = green reverse
+	local = green
+	remote = yellow
+[color "status"]
+	added = green
+	changed = yellow
+	untracked = red
+[core]
+	editor = vim
+	excludesfile = /Users/ctruth/.gitignore_global
+[commit]
+	template = /Users/ctruth/.gitmessage.txt
+[alias]
+	s = status -sb -uall
+	sha = rev-parse HEAD
+	last = log -1 HEAD --oneline --decorate
+	ll = log --oneline --decorate
+	set-master = branch --set-upstream-to=origin/master master
+	back = reset --soft HEAD~1
+	again = commit -c ORIG_HEAD
+	set-deploy = =
+	co = checkout
+	bs = branch -v
+	rs = remote -v

@@ -1,0 +1,100 @@
+# =================
+# Functions
+# =================
+
+function google() {
+  search=""
+  for term in $@; do
+    search="$search%20$term"
+  done
+  chrome "http://www.google.com/search?q=$search"
+}
+
+function wiki() {
+    search=""
+  for term in $@; do
+    search="$search%20$term"
+  done
+  chrome "https://en.wikipedia.org/wiki/Special:Search/$search"
+}
+
+function stack() {
+  search=""
+  for term in $@; do
+    search="$search%20term"
+  done
+  chrome "http://stackoverflow.com/search?q=$search"
+}
+
+#######################################
+# Start an HTTP server from a directory
+# Arguments:
+#  Port (optional)
+#######################################
+
+server() {
+  local port="${1:-8000}"
+  (sleep 2 && open "http://localhost:${port}/")&
+
+  # Simple Pythong Server:
+  # python -c $'import SimpleHTTPServer;\nmap = SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map;\nmap[""] = "text/plain";\nfor key, value in map.items():\n\tmap[key] = value + ";charset=UTF-8";\nSimpleHTTPServer.test();' "$port"
+
+  # Simple Ruby Webrick Server:
+  ruby -e "require 'webrick';server = WEBrick::HTTPServer.new(:Port=>${port},:DocumentRoot=>Dir::pwd );trap('INT'){ server.shutdown };server.start"
+}
+
+#######################################
+# List any open internet sockets on
+# several popular ports. Useful if a
+# rogue server is running.
+# - http://www.akadia.com/services/lsof_intro.html
+# - http://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers
+#
+# No Arguments.
+#######################################
+
+rogue() {
+  # add or remove ports to check here!
+  local PORTS="3000 4567 6379 8000 8888 27017"
+  local MESSAGE="> Checking for processes on ports"
+  local COMMAND="lsof"
+
+  for PORT in $PORTS; do
+    MESSAGE="${MESSAGE} ${PORT},"
+    COMMAND="${COMMAND} -i TCP:${PORT}"
+  done
+
+  echo "${MESSAGE%?}..."
+  local OUTPUT="$(${COMMAND})"
+
+  if [ -z "$OUTPUT" ]; then
+    echo "> Nothing running!"
+  else
+    echo "> Processes found:"
+    printf "\n$OUTPUT\n\n"
+    echo "> Use the 'kill' command with the 'PID' of any process you want to quit."
+    echo
+  fi
+}
+
+
+#######################################
+# Set ACL permissions to inherit and
+# allow read, write and update actions.
+#
+# Arguments:
+#   1. Group Name
+#   2. Directory Path
+#######################################
+
+allow_group() {
+  local GROUP_NAME="$1"
+  local TARGET_DIR="$2"
+  local PERMISSIONS="read,write,delete,add_file,add_subdirectory"
+  local INHERITANCE="file_inherit,directory_inherit"
+
+  sudo mkdir -p "$TARGET_DIR"
+  sudo /bin/chmod -R -N "$TARGET_DIR"
+  sudo /bin/chmod -R +a "group:$GROUP_NAME:allow $PERMISSIONS,$INHERITANCE" "$TARGET_DIR"
+}
+

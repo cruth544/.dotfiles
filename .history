@@ -1,0 +1,12 @@
+export HISTSIZE=32768
+export HISTFILESIZE=$HISTSIZE
+
+# don't put duplicate lines in the history.
+export HISTCONTROL=ignoredups
+
+# ignore same sucessive entries.
+export HISTCONTROL=ignoreboth
+
+# Make some commands not show up in history
+export HISTIGNORE="h"
+

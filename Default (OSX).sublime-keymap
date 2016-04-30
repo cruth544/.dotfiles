@@ -1,0 +1,24 @@
+[
+  // Add a "chord", or two key strokes in a row, to use Find + replace,
+  // since Spectacle overwrites the default.
+  //
+  // Note: this forces the user to use a chord for simple search.
+  //
+  // - Find in file:      ⌘-f, ⌘-f
+  // - Find in all files: ⌘⇧-f
+  // - Find + replace:    ⌘-f, ⌘-r
+  {
+    "keys":    ["super+f","super+r"],
+    "command": "show_panel",
+    "args":    {"panel": "replace", "reverse": false}
+  },
+  { "keys": ["ctrl+d"], "command": "find_under_expand" },
+  {
+    "keys": ["ctrl+super+alt+up"],
+    "command": "themr_list_themes"
+  },
+  {"keys": ["ctrl+tab"],
+  "command": "next_view"},
+  {"keys": ["ctrl+shift+tab"],
+  "command": "prev_view"}
+]

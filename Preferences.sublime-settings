@@ -1,0 +1,41 @@
+{
+	"always_show_minimap_viewport": false,
+	"bold_folder_labels": true,
+	"close_windows_when_empty": true,
+	"color_scheme": "Packages/User/SublimeLinter/Monokai Extended (SL).tmTheme",
+	"command": "prev_view",
+	"default_line_ending": "unix",
+	"drag_text": false,
+	"draw_white_space": "selection",
+	"ensure_newline_at_eof_on_save": true,
+	"font_face": "Source Code Pro SemiBold",
+	"font_options":
+	[
+		"subpixel_antialias"
+	],
+	"font_size": 13,
+	"highlight_line": true,
+	"highlight_modified_tabs": true,
+	"hot_exit": false,
+	"ignored_packages":
+	[
+		"Vintage"
+	],
+	"keys":
+	[
+		"ctrl+shift+tab"
+	],
+	"remember_open_files": false,
+	"rulers":
+	[
+		72,
+		80,
+		119
+	],
+	"tab_size": 2,
+	"theme": "Spacegray Eighties.sublime-theme",
+	"translate_tabs_to_spaces": true,
+	"trim_trailing_white_space_on_save": true,
+	"word_wrap": true,
+	"wrap_width": 75
+}

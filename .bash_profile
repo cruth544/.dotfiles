@@ -16,10 +16,16 @@
 # http://ss64.com/bash/syntax-prompt.html
 # https://dougbarton.us/Bash/Bash-prompts.html
 # http://sage.ucsc.edu/xtal/iterm_tab_customization.html
-for DOTFILE in `find /Users/$USER/.dotfiles`
-do
-  [ -f “$DOTFILE” ] && source “$DOTFILE”
-done
+# for DOTFILE in `find $HOME/.dotfiles/`
+# 	do
+# 		# if [[ $DOTFILE == *".git/"* ]]; 
+# 		# then
+# 		# 	echo "$DOTFILE"
+# 		# else
+# 		  # [ -f "$DOTFILE" ] && source $DOTFILE
+# 		# fi
+# 	done
+# done
 
 # ====================================
 # Environmental Variables and API Keys

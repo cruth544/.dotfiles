@@ -20,15 +20,17 @@ if tput setaf 1 &> /dev/null; then
   if [[ $(tput colors) -ge 256 ]] 2>/dev/null; then
     # this is for xterm-256color
     BLACK=$(tput setaf 0)
-    RED=$(tput setaf 1)
+    RED=$(tput setaf 196)
+    DARK_RED=$(tput setaf 1)
     GREEN=$(tput setaf 2)
     YELLOW=$(tput setaf 226)
     BLUE=$(tput setaf 4)
-    MAGENTA=$(tput setaf 5)
-    CYAN=$(tput setaf 6)
+    MAGENTA=$(tput setaf 13)
+    CYAN=$(tput setaf 14) #45
     WHITE=$(tput setaf 7)
-    ORANGE=$(tput setaf 172)
-    PURPLE=$(tput setaf 141)
+    ORANGE=$(tput setaf 208)
+    PURPLE=$(tput setaf 93)
+    LIGHT_PURPLE=$(tput setaf 141)
     BG_BLACK=$(tput setab 0)
     BG_RED=$(tput setab 1)
     BG_GREEN=$(tput setab 2)
@@ -61,15 +63,16 @@ else
   BOLD=""
   RESET="\033[m"
 fi
-
 # ---------------------
 # Style the prompt
 # ---------------------
 
-style_user="\[${RESET}${WHITE}\]"
+style_user="\[${RESET}${PURPLE}\]"
 style_path="\[${RESET}${CYAN}\]"
 style_chars="\[${RESET}${WHITE}\]"
-style_branch="${RED}"
+style_dollar="\[${RESET}${ORANGE}\]"
+style_branch="${DARK_RED}"
+style_git_status="${MAGENTA}"
 
 # ---------------------
 # Build the prompt
@@ -80,7 +83,7 @@ PS1="${style_user}\u"                    # Username
 PS1+="${style_path} \w"                  # Working directory
 PS1+="\$(prompt_git)"                    # Git details
 PS1+="\n"                                # Newline
-PS1+="${style_chars}\$ \[${RESET}\]"     # $ (and reset color)
+PS1+="${style_dollar}\$ \[${RESET}\]"    # $ (and reset color)
 
 # -----------------
 # For the prompt
@@ -117,24 +120,24 @@ prompt_git() {
     if $GIT_DIFF_IN_PROMPT; then
       # Check for uncommitted changes in the index
       if ! $(git diff --quiet --ignore-submodules --cached); then
-          uc="+"
+          uc="${YELLOW}+"
       fi
       # Check for unstaged changes
       if ! $(git diff-files --quiet --ignore-submodules --); then
-          us="!"
+          us="${ORANGE}!"
       fi
       # Check for untracked files
       if [ -n "$(git ls-files --others --exclude-standard)" ]; then
-          ut="${RED}?"
+          ut="${ORANGE}?"
       fi
       # Check for stashed files
       if $(git rev-parse --verify refs/stash &>/dev/null); then
-          st="$"
+          st="${BLUE}$"
       fi
       git_state=$uc$us$ut$st
       # Combine the branch name and state information
       if [[ $git_state ]]; then
-          git_info="$git_info${RESET}[$git_state${RESET}]"
+          git_info="$git_info${RED}[$git_state${RED}]${RESET}"
       fi
     fi
 

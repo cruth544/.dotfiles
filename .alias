@@ -2,7 +2,7 @@
 # Aliases
 # ====================
 
-alias bprofile='touch ~/.bash_profile; open -a "Sublime Text" ~/.bash_profile'
+alias bprofile='open -a "Sublime Text" ~/.dotfiles/'
 
 # ================
 # Application Aliases
@@ -16,6 +16,7 @@ alias whalesay='docker run docker/whalesay cowsay $@'
 ## 'ls' lists information about files.
 # By default, show slashes for directories.
 alias ls='ls -F'
+alias lsa='ls -a'
 
 # Enhanced ls, grouping directories and using colors.
 # alias lf='ls --color -h --group-directories-first -F'
@@ -34,8 +35,11 @@ alias ll='ls -la'
 # ACL permissions, we must use the BSD version available at: /bin/ls
 alias lacl='/bin/ls -GFlae'
 
+# alias cd='cd $@; ls;'
 # Go back one directory
 alias b='cd ..'
+
+#
 
 # History lists your previously entered commands
 alias h='history'
@@ -48,6 +52,8 @@ alias cp='cp -rv'
 alias mv='mv -v'
 alias rm='rm -v'
 alias mkdir='mkdir -pv'
+
+# alias git init='git init; cp ~/.dotfiles/.gitignore_global ./; mv .gitignore_global .gitignore;'
 
 
 # =================

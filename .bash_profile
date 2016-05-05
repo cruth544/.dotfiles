@@ -16,16 +16,24 @@
 # http://ss64.com/bash/syntax-prompt.html
 # https://dougbarton.us/Bash/Bash-prompts.html
 # http://sage.ucsc.edu/xtal/iterm_tab_customization.html
-# for DOTFILE in `find $HOME/.dotfiles/`
-# 	do
-# 		# if [[ $DOTFILE == *".git/"* ]]; 
-# 		# then
-# 		# 	echo "$DOTFILE"
-# 		# else
-# 		  # [ -f "$DOTFILE" ] && source $DOTFILE
-# 		# fi
-# 	done
+
+# for DOTFILE in `find $HOME/.dotfiles`
+# do
+# 	if [[ $DOTFILE != *".git/"* ]]; then
+# 	  [ -f $DOTFILE ] && source $DOTFILE
+# 	fi
 # done
+source ~/.dotfiles/.alias
+source ~/.dotfiles/.bash_profile
+source ~/.dotfiles/.env
+source ~/.dotfiles/.functions
+source ~/.dotfiles/.history
+source ~/.dotfiles/.profile
+source ~/.dotfiles/.git-completion.bash
+source ~/.dotfiles/.docker-completion.bash
+source ~/.dotfiles/.bash_prompt.sh
+source ~/.dotfiles/.inputrc
+# source ~/.dotfiles/.vim/.vimrc
 
 # ====================================
 # Environmental Variables and API Keys

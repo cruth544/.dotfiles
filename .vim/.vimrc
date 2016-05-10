@@ -1,3 +1,18 @@
+set nocompatible
+filetype off
+set rtp+=~/.dotfiles/.vim/bundle/vundle
+call vundle#rc()
+
+" Vundles
+
+Plugin 'mattn/emmet-vim'
+Plugin 'valloric/MatchTagAlways'
+Plugin 'valloric/YouCompleteMe'
+Plugin 'mustache/vim-mustache-handlebars'
+
+filetype on
+
+
 syntax on 
 set number
 set autoindent
@@ -21,3 +36,8 @@ let _curfile = expand("%:t")
 if _curfile =~ "Makefile" || _curfile =~ "makefile" || _curfile =~ ".*\.mk"
     set noexpandtab
 endif
+
+" Other settings
+
+" Handlebar Mustache_Abbreviations
+let g:mustache_abbreviations = 1

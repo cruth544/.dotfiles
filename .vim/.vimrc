@@ -5,13 +5,43 @@ call vundle#rc()
 
 " Vundles
 
+" Emmet
 Plugin 'mattn/emmet-vim'
+
+" Match Opening and Closing Symbols
 Plugin 'valloric/MatchTagAlways'
-Plugin 'valloric/YouCompleteMe'
+
+" Use <Tab> for insert completion
+Plugin 'ervandew/supertab'
+
+" AutoComplete (Don't use, weird behavior with ESC)
+"Plugin 'vim-scripts/AutoComplPop'
+
+" Keyword completion (requires lua)
+Plugin 'Shougo/neocomplete.vim'
+
+" Extra Javascript Highlighting
+"Plugin 'pangloss/vim-javascript' (issues opening files)
+Plugin 'othree/javascript-libraries-syntax.vim'
+" NodeJS Highlighting
+Plugin 'moll/vim-node'
+
+" Syntax Checker
+Plugin 'scrooloose/syntastic'
+
+" HTML Autocomplete/Syntax
+Plugin 'othree/html5.vim'
+Plugin 'othree/html5-syntax.vim'
+
+" CSS Autocomplete
+Plugin 'groenewege/vim-less'
+Plugin 'Townk/vim-autoclose'
+
+" Mustache .hbs files syntax
 Plugin 'mustache/vim-mustache-handlebars'
 
-filetype on
 
+filetype on
 
 syntax on 
 set number
@@ -23,6 +53,7 @@ set expandtab
 set nohlsearch
 set ignorecase
 set smartcase
+set incsearch
 
 " Split navigation for Chromebook
 " Ctrl-w defaults to close tab
@@ -39,5 +70,22 @@ endif
 
 " Other settings
 
+" JavaScript Libraries
+let g:used_javascript_libs = 'jquery,underscore,angularjs,angularui,angularuirouter,react,flux,backbone,jasmine'
+
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_on_wq = 0
+
 " Handlebar Mustache_Abbreviations
 let g:mustache_abbreviations = 1
+
+" Supertab
+let g:SuperTabDefaultCompletionType= "<c-n>"
+

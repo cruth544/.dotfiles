@@ -23,17 +23,16 @@
 # 	  [ -f $DOTFILE ] && source $DOTFILE
 # 	fi
 # done
-#source ~/.dotfiles/.alias
-#source ~/.dotfiles/.bash_profile
-#source ~/.dotfiles/.env
-#source ~/.dotfiles/.functions
-#source ~/.dotfiles/.history
-#source ~/.dotfiles/.profile
-#source ~/.dotfiles/.git-completion.bash
-#source ~/.dotfiles/.docker-completion.bash
-#source ~/.dotfiles/.bash_prompt.sh
-#source ~/.dotfiles/.inputrc
-# source ~/.dotfiles/.vim/.vimrc
+source ~/.dotfiles/.alias
+source ~/.dotfiles/.env
+source ~/.dotfiles/.functions
+source ~/.dotfiles/.history
+source ~/.dotfiles/.profile
+source ~/.dotfiles/.bash_prompt.sh
+source ~/.dotfiles/.inputrc
+source ~/.dotfiles/.git-completion.bash
+#source ~/.dotfiles/.docker-completion.bash # If you have docker installed
+#source ~/.dotfiles/.vim/.vimrc # Follow README.md under .vim folder
 
 # ====================================
 # Environmental Variables and API Keys

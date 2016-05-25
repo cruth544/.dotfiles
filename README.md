@@ -12,6 +12,7 @@ Key Alias:
 ```subl (path)``` Open file/folder in sublime
 ```lsa``` Show all files including hidden
 ```gitignore``` Copies the .gitignore_global file into current directory
+```bprofile``` Opens .dotfiles folder in Sublime
 Fun Alias
 ```specs``` Display computer specifications
 ```starwars``` Plays StarWars

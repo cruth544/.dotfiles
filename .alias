@@ -54,7 +54,7 @@ alias mv='mv -v'
 alias rm='rm -v'
 alias mkdir='mkdir -pv'
 
-# alias git init='git init; cp ~/.dotfiles/.gitignore_global ./; mv .gitignore_global .gitignore;'
+alias gitignore='cp ~/.dotfiles/.gitignore_global ./.gitignore;'
 
 
 # =================

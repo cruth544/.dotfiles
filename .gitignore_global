@@ -9,6 +9,7 @@
 *.exe
 *.o
 *.so
+
 # Vim #
 #######
 *.swp
@@ -51,6 +52,10 @@ spec/reports
 spec/tmp
 test/tmp
 test/version_tmp
+
+# sass #
+########
+/.sass-cache
 
 # node #
 ########

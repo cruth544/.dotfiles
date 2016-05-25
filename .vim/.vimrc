@@ -5,6 +5,8 @@ call vundle#rc()
 
 " Vundles
 
+" File Structure
+"Plugin
 " Emmet
 Plugin 'mattn/emmet-vim'
 

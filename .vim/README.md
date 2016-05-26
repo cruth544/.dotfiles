@@ -6,5 +6,5 @@ In your HOME directory:
 git clone https://github.com/k26dr/.vim.git
 
 # link the .vim/.vimrc file to your local .vimrc
-ln -s ~/.vim/.vimrc ~/.vimrc
+ln -s ~/.dotfiles/.vim/.vimrc ~/.vimrc
 ```

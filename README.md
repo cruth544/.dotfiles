@@ -20,3 +20,20 @@ Files are broken down into sub dotfiles
 ```starwars``` Plays StarWars</br>
 
 If you want to customize colors of user, path, and git colors look at .bash_prompt.sh
+
+
+This does NOT include npm installations including
+npm</br>
+node</br>
+nodemon</br>
+node-inspector</br>
+http-server</br>
+
+rails</br>
+rvm</br>
+
+grunt</br>
+docker</br>
+
+and others you may use.
+It is just simply a look and feel environment of your terminal.

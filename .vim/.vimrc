@@ -31,6 +31,9 @@ Plugin 'moll/vim-node'
 " Syntax Checker
 Plugin 'scrooloose/syntastic'
 
+" Commenting
+Plugin 'scrooloose/nerdcommenter'
+
 " HTML Autocomplete/Syntax
 Plugin 'othree/html5.vim'
 Plugin 'othree/html5-syntax.vim'
@@ -44,6 +47,7 @@ Plugin 'mustache/vim-mustache-handlebars'
 
 
 filetype on
+filetype plugin on
 
 syntax on 
 set number

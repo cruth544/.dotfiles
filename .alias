@@ -4,6 +4,7 @@
 
 alias bprofile='open -a "Sublime Text" ~/.dotfiles/'
 alias dotfiles='cd ~/.dotfiles'
+alias karabiner='cd ~/Library/Application\ Support/Karabiner'
 
 # ================
 # Application Aliases

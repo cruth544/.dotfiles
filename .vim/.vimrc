@@ -29,7 +29,8 @@ Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'moll/vim-node'
 
 " Syntax Checker
-Plugin 'scrooloose/syntastic'
+" Too many errors shown on every page
+"Plugin 'scrooloose/syntastic'
 
 " Commenting
 Plugin 'scrooloose/nerdcommenter'

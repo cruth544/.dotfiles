@@ -1,6 +1,7 @@
 set nocompatible
 filetype off
 set rtp+=~/.dotfiles/.vim/bundle/vundle
+set rtp+=~/.dotfiles/.vim
 call vundle#rc()
 
 " Vundles
@@ -46,6 +47,8 @@ Plugin 'Townk/vim-autoclose'
 " Mustache .hbs files syntax
 Plugin 'mustache/vim-mustache-handlebars'
 
+" Color Package
+Plugin 'chriskempson/base16-vim'
 
 filetype on
 filetype plugin on
@@ -96,3 +99,8 @@ let g:mustache_abbreviations = 1
 " Supertab
 let g:SuperTabDefaultCompletionType= "<c-n>"
 
+" Base-16 (Color)
+"let base16colorspace=256
+
+" Monokai Color
+colorscheme monokai

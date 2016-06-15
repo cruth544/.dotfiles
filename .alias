@@ -12,6 +12,7 @@ alias karabiner='cd ~/Library/Application\ Support/Karabiner'
 
 # Sublime should be symlinked. Otherwise use one of these
 alias subl='open -a "Sublime Text"'
+alias int='open -a "IntelliJ IDEA"'
 alias chrome='open -a "Google Chrome"'
 
 alias whalesay='docker run docker/whalesay cowsay $@'

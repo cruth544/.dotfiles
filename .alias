@@ -4,11 +4,14 @@
 
 alias bprofile='open -a "Sublime Text" ~/.dotfiles/'
 alias dotfiles='cd ~/.dotfiles'
+alias vimrc='vim ~/.dotfiles/.vim/.vimrc'
 alias karabiner='cd ~/Library/Application\ Support/Karabiner'
 
 # ================
 # Application Aliases
 # ================
+
+alias py='python'
 
 # Sublime should be symlinked. Otherwise use one of these
 alias subl='open -a "Sublime Text"'
@@ -80,3 +83,4 @@ alias dropRailsDB='rake db:drop; rake db:create; rake db:migrate; rake db:seed'
 
 alias starwars='telnet towel.blinkenlights.nl'
 alias specs='archey'
+alias dunnet='emacs -batch -l dunnet'

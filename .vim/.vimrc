@@ -52,6 +52,7 @@ Plugin 'chriskempson/base16-vim'
 
 filetype on
 filetype plugin on
+filetype indent on
 
 syntax on 
 set number
@@ -59,11 +60,15 @@ set autoindent
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
+set textwidth=80
 set expandtab
 set nohlsearch
 set ignorecase
 set smartcase
 set incsearch
+set smartindent
+
+set backspace=indent,eol,start
 
 " Split navigation for Chromebook
 " Ctrl-w defaults to close tab

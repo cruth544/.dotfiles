@@ -63,7 +63,7 @@ server() {
 
 rogue() {
   # add or remove ports to check here!
-  local PORTS="3000 3012 3014 4567 6379 8000 8080 8888 27017"
+  local PORTS="3000 3012 3014 4502 4567 6379 8000 8080 8888 27017"
   local MESSAGE="> Checking for processes on ports"
   local COMMAND="lsof"
 

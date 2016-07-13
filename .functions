@@ -64,13 +64,19 @@ server() {
 rogue() {
   # add or remove ports to check here!
   local PORTS="3000 3012 3014 4502 4567 6379 8000 8080 8888 27017"
-  local MESSAGE="> Checking for processes on ports"
+  local MESSAGE="> Checking for processes on port"
   local COMMAND="lsof"
 
-  for PORT in $PORTS; do
-    MESSAGE="${MESSAGE} ${PORT},"
-    COMMAND="${COMMAND} -i TCP:${PORT}"
-  done
+  if [ $@ ]; then
+    MESSAGE="${MESSAGE} $@ "
+    COMMAND="${COMMAND} -i TCP:$@"
+  else
+    MESSAGE="${MESSAGE}s"
+    for PORT in $PORTS; do
+      MESSAGE="${MESSAGE} ${PORT},"
+      COMMAND="${COMMAND} -i TCP:${PORT}"
+    done
+  fi
 
   echo "${MESSAGE%?}..."
   local OUTPUT="$(${COMMAND})"

@@ -120,19 +120,19 @@ prompt_git() {
     if $GIT_DIFF_IN_PROMPT; then
       # Check for uncommitted changes in the index
       if ! $(git diff --quiet --ignore-submodules --cached); then
-          uc="${YELLOW}+"
+          uc="🍻 " # ${YELLOW}+
       fi
       # Check for unstaged changes
       if ! $(git diff-files --quiet --ignore-submodules --); then
-          us="${ORANGE}!"
+          us="🚨 " # ${ORANGE}!
       fi
       # Check for untracked files
       if [ -n "$(git ls-files --others --exclude-standard)" ]; then
-          ut="${ORANGE}?"
+          ut="👻 " # ${ORANGE}?
       fi
       # Check for stashed files
       if $(git rev-parse --verify refs/stash &>/dev/null); then
-          st="${BLUE}$"
+          st="📦 " # ${BLUE}$
       fi
       git_state=$uc$us$ut$st
       # Combine the branch name and state information

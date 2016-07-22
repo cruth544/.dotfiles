@@ -13,6 +13,11 @@ Plugin 'mattn/emmet-vim'
 
 " Match Opening and Closing Symbols
 Plugin 'valloric/MatchTagAlways'
+" Drop line on enter (inside closing tags)
+Plugin 'delimitMate.vim'
+
+" Multiple Cursors
+Plugin 'terryma/vim-multiple-cursors'
 
 " Use <Tab> for insert completion
 Plugin 'ervandew/supertab'
@@ -83,20 +88,23 @@ if _curfile =~ "Makefile" || _curfile =~ "makefile" || _curfile =~ ".*\.mk"
     set noexpandtab
 endif
 
+" sublime like new lines
+let delimitMate_expand_cr=1
+
 " Other settings
 
 " JavaScript Libraries
 let g:used_javascript_libs = 'jquery,underscore,angularjs,angularui,angularuirouter,react,flux,backbone,jasmine'
 
 " Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_on_wq = 0
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_on_wq = 0
 
 " Handlebar Mustache_Abbreviations
 let g:mustache_abbreviations = 1

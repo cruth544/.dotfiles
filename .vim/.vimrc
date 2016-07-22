@@ -1,6 +1,6 @@
 set nocompatible
 filetype off
-set rtp+=~/.dotfiles/.vim/bundle/vundle
+set rtp+=~/.dotfiles/.vim/bundle/vundle.vim
 set rtp+=~/.dotfiles/.vim
 call vundle#rc()
 

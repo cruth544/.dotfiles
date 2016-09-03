@@ -16,6 +16,9 @@ Plugin 'valloric/MatchTagAlways'
 " Drop line on enter (inside closing tags)
 Plugin 'delimitMate.vim'
 
+" Auto Formating
+Plugin 'Chiel92/vim-autoformat'
+
 " Multiple Cursors
 Plugin 'terryma/vim-multiple-cursors'
 
@@ -24,6 +27,8 @@ Plugin 'ervandew/supertab'
 
 " AutoComplete (Don't use, weird behavior with ESC)
 "Plugin 'vim-scripts/AutoComplPop'
+
+
 
 " Keyword completion (requires lua)
 Plugin 'Shougo/neocomplete.vim'
@@ -61,17 +66,19 @@ filetype indent on
 
 syntax on 
 set number
-set autoindent
+" Indentation
+"set autoindent
+set smartindent
+set noexpandtab
 set tabstop=2
-set softtabstop=2
 set shiftwidth=2
+"set softtabstop=2
+
 set textwidth=80
-set expandtab
 set nohlsearch
 set ignorecase
 set smartcase
 set incsearch
-set smartindent
 
 set backspace=indent,eol,start
 

@@ -26,6 +26,10 @@ function stack() {
   chrome "http://stackoverflow.com/search?q=$search"
 }
 
+function docker-env() {
+	"eval \"\$(docker-machine env $@)\""
+}
+
 # function git() {
 #   if [[ $@ == 'init' ]]; then
 #     echo 'git init; cp ~/.dotfiles/.gitignore_global ./.gitignore;'

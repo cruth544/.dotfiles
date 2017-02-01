@@ -66,6 +66,7 @@ filetype indent on
 
 syntax on 
 set number
+set noswapfile " no swp file
 " Indentation
 "set autoindent
 set smartindent
@@ -88,6 +89,16 @@ nmap Kh :wincmd h<Enter>
 nmap Kl :wincmd l<Enter>
 nmap Kj :wincmd j<Enter>
 nmap Kk :wincmd k<Enter>
+
+" Open new split panes to right and bottom, which feels more natural
+set splitbelow
+set splitright
+
+" Quicker window movement
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
 
 " disable expandtab for makefiles
 let _curfile = expand("%:t")
@@ -124,3 +135,4 @@ let g:SuperTabDefaultCompletionType= "<c-n>"
 
 " Monokai Color
 colorscheme monokai
+

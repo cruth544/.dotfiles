@@ -23,14 +23,14 @@
 # 	  [ -f $DOTFILE ] && source $DOTFILE
 # 	fi
 # done
-source ~/.dotfiles/.alias
-source ~/.dotfiles/.env
-source ~/.dotfiles/.functions
-source ~/.dotfiles/.history
-source ~/.dotfiles/.profile
-source ~/.dotfiles/.bash_prompt.sh
-source ~/.dotfiles/.inputrc
-source ~/.dotfiles/.git-completion.bash
+. ~/.dotfiles/.alias
+. ~/.dotfiles/.env
+. ~/.dotfiles/.functions
+. ~/.dotfiles/.history
+. ~/.dotfiles/.profile
+. ~/.dotfiles/.bash_prompt.sh
+. ~/.dotfiles/.inputrc
+. ~/.dotfiles/.git-completion.bash
 #source ~/.dotfiles/.docker-completion.bash # If you have docker installed
 #source ~/.dotfiles/.vim/.vimrc # Follow README.md under .vim folder
 

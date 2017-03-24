@@ -3,7 +3,7 @@
 # https://alicoding.com/how-to-start-mongodb-automatically-when-starting-your-mac-os-x/
 
 cp ~/.dotfiles/.bash_profile ~/
-source ~/.bash_profile
+. ~/.bash_profile
 
 # in development app installs
 #echo "brew update"

@@ -2,8 +2,8 @@
 # use this for always having mongo running
 # https://alicoding.com/how-to-start-mongodb-automatically-when-starting-your-mac-os-x/
 
-echo "cp ~/.dotfiles/.bash_profile ~/"
-echo "source ~/.bash_profile"
+cp ~/.dotfiles/.bash_profile ~/
+source ~/.bash_profile
 
 # in development app installs
 #echo "brew update"

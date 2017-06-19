@@ -1,7 +1,7 @@
 To start:
 
 ```
-git clone https://github.com/cruth544/.dotfiles.git ~/
+git clone https://github.com/cruth544/.dotfiles.git ~/.dotfiles
 cp ~/.dotfiles/.bash_profile ~/
 source ~/.bash_profile
 ```

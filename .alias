@@ -2,7 +2,7 @@
 # Aliases
 # ====================
 
-alias bprofile='open -a "Sublime Text" ~/.dotfiles/'
+alias bprofile='vim ~/.dotfiles/'
 alias dotfiles='cd ~/.dotfiles'
 alias vimrc='vim ~/.dotfiles/.vim/.vimrc'
 alias karabiner='cd ~/Library/Application\ Support/Karabiner'

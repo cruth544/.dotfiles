@@ -21,10 +21,23 @@ function wiki() {
 function stack() {
   search=""
   for term in $@; do
-    search="$search%20term"
+    search="$search%20$term"
   done
   chrome "http://stackoverflow.com/search?q=$search"
 }
+
+# Title window
+function title() {
+  title=""
+  for term in $@; do
+    title="$title $term"
+  done
+  printf "\033]0;%s\007" "$title"
+}
+
+#function docker-env() {
+	#"eval \"\$(docker-machine env $@)\""
+#}
 
 # function git() {
 #   if [[ $@ == 'init' ]]; then

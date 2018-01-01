@@ -7,6 +7,26 @@ call vundle#rc()
 " Vundles
 
 " File Structure
+
+" File Tree structure
+Plugin 'scrooloose/nerdtree'
+
+" L9 - Library
+Plugin 'vim-scripts/l9'
+
+" Fuzzy File Finder
+Plugin 'vim-scripts/FuzzyFinder'
+
+" Snippet dependencies
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+" Snippets
+Plugin 'garbas/vim-snipmate'
+
+" Snippet optional plugins
+Plugin 'honza/vim-snippets'
+
+
 "Plugin
 " Emmet
 Plugin 'mattn/emmet-vim'
@@ -25,23 +45,17 @@ Plugin 'terryma/vim-multiple-cursors'
 " Use <Tab> for insert completion
 Plugin 'ervandew/supertab'
 
-" AutoComplete (Don't use, weird behavior with ESC)
-"Plugin 'vim-scripts/AutoComplPop'
-
-
-
 " Keyword completion (requires lua)
 Plugin 'Shougo/neocomplete.vim'
+
+ "YouCompleteMe
+"Plugin 'valloric/YouCompleteMe'
 
 " Extra Javascript Highlighting
 "Plugin 'pangloss/vim-javascript' (issues opening files)
 Plugin 'othree/javascript-libraries-syntax.vim'
 " NodeJS Highlighting
 Plugin 'moll/vim-node'
-
-" Syntax Checker
-" Too many errors shown on every page
-"Plugin 'scrooloose/syntastic'
 
 " Commenting
 Plugin 'scrooloose/nerdcommenter'
@@ -53,6 +67,10 @@ Plugin 'othree/html5-syntax.vim'
 " CSS Autocomplete
 Plugin 'groenewege/vim-less'
 Plugin 'Townk/vim-autoclose'
+
+" TypeScript Syntax
+Plugin 'leafgarland/typescript-vim'
+
 
 " Mustache .hbs files syntax
 Plugin 'mustache/vim-mustache-handlebars'
@@ -100,6 +118,15 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
+" NERDTree remap
+map <C-p> :NERDTreeToggle<CR>
+
+" FuzzyFinder remap
+map <C-p>p :FufFile<CR>
+
+let g:fuf_keyOpen = "<C-l>"
+let g:fuf_keyOpenTabpage = "<CR>"
+
 " disable expandtab for makefiles
 let _curfile = expand("%:t")
 if _curfile =~ "Makefile" || _curfile =~ "makefile" || _curfile =~ ".*\.mk"
@@ -123,6 +150,9 @@ let g:used_javascript_libs = 'jquery,underscore,angularjs,angularui,angularuirou
 "let g:syntastic_auto_loc_list = 1
 "let g:syntastic_check_on_open = 1
 "let g:syntastic_on_wq = 0
+
+" TypeScript Indenting Disable
+" let g:typescript_indent_disable = 1
 
 " Handlebar Mustache_Abbreviations
 let g:mustache_abbreviations = 1

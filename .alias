@@ -6,6 +6,7 @@ alias bprofile='vim ~/.dotfiles/'
 alias dotfiles='cd ~/.dotfiles'
 alias vimrc='vim ~/.dotfiles/.vim/.vimrc'
 alias karabiner='cd ~/Library/Application\ Support/Karabiner'
+alias inspect='nodemon --inspect'
 
 # ================
 # Application Aliases
@@ -18,7 +19,7 @@ alias subl='open -a "Sublime Text"'
 alias int='open -a "IntelliJ IDEA"'
 alias chrome='open -a "Google Chrome"'
 
-alias whalesay='docker run docker/whalesay cowsay $@'
+#alias whalesay='docker run docker/whalesay cowsay $@'
 ## 'ls' lists information about files.
 # By default, show slashes for directories.
 alias ls='ls -F'

@@ -35,6 +35,14 @@ function title() {
   printf "\033]0;%s\007" "$title"
 }
 
+# ls Grep
+function lsg() {
+	ls | egrep "$@"
+}
+
+function lsga() {
+	ls -a | egrep "$@"
+}
 #function docker-env() {
 	#"eval \"\$(docker-machine env $@)\""
 #}

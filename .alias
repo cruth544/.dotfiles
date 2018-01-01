@@ -24,6 +24,7 @@ alias chrome='open -a "Google Chrome"'
 # By default, show slashes for directories.
 alias ls='ls -F'
 alias lsa='ls -a'
+alias lsh='ls -lh'
 
 # Enhanced ls, grouping directories and using colors.
 # alias lf='ls --color -h --group-directories-first -F'

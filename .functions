@@ -40,9 +40,10 @@ function lsg() {
 	ls | egrep "$@"
 }
 
-function lsga() {
+function lsag() {
 	ls -a | egrep "$@"
 }
+alias lsga='lsag'
 #function docker-env() {
 	#"eval \"\$(docker-machine env $@)\""
 #}

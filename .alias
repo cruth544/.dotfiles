@@ -86,3 +86,4 @@ alias dropRailsDB='rake db:drop; rake db:create; rake db:migrate; rake db:seed'
 alias starwars='telnet towel.blinkenlights.nl'
 alias specs='archey'
 alias dunnet='emacs -batch -l dunnet'
+

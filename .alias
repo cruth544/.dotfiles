@@ -30,7 +30,7 @@ alias lsh='ls -lh'
 # alias lf='ls --color -h --group-directories-first -F'
 
 # Long list format including hidden files and file information.
-alias ll='ls -la'
+alias ll='ls -lah'
 #--color -h --group-directories-first -Fla
 
 # List ACLs (finer-grained permissions that can be inherited).
@@ -75,8 +75,6 @@ alias show_desktop="defaults write com.apple.finder CreateDesktop -bool true && 
 # Hide/show hidden files in Finder
 alias hideFiles="defaults write com.apple.finder AppleShowAllFiles FALSE && killall Finder"
 alias showFiles="defaults write com.apple.finder AppleShowAllFiles TRUE && killall Finder"
-
-alias dropRailsDB='rake db:drop; rake db:create; rake db:migrate; rake db:seed'
 
 
 # =================

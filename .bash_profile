@@ -16,21 +16,13 @@
 # http://ss64.com/bash/syntax-prompt.html
 # https://dougbarton.us/Bash/Bash-prompts.html
 # http://sage.ucsc.edu/xtal/iterm_tab_customization.html
+echo "$HOME/.dotfiles/.bash_files"/*
 
-# for DOTFILE in `find $HOME/.dotfiles`
-# do
-# 	if [[ $DOTFILE != *".git/"* ]]; then
-# 	  [ -f $DOTFILE ] && source $DOTFILE
-# 	fi
-# done
-source ~/.dotfiles/.alias
-source ~/.dotfiles/.env
-source ~/.dotfiles/.functions
-source ~/.dotfiles/.history
-source ~/.dotfiles/.profile
-source ~/.dotfiles/.bash_prompt.sh
-source ~/.dotfiles/.inputrc
-source ~/.dotfiles/.git-completion.bash
+for DOTFILE in `find $HOME/.dotfiles/.bash_files`
+do
+	 [[ -f $DOTFILE ]] && source $DOTFILE
+done
+
 #source ~/.dotfiles/.docker-completion.bash # If you have docker installed
 #source ~/.dotfiles/.vim/.vimrc # Follow README.md under .vim folder
 

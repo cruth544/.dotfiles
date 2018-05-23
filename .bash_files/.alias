@@ -2,7 +2,7 @@
 # Aliases
 # ====================
 
-alias bprofile='vim ~/.dotfiles/'
+alias bprofile='vim ~/.dotfiles/.bash_files'
 alias dotfiles='cd ~/.dotfiles'
 alias vimrc='vim ~/.dotfiles/.vim/.vimrc'
 alias karabiner='cd ~/Library/Application\ Support/Karabiner'

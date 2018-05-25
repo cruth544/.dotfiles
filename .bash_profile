@@ -16,7 +16,6 @@
 # http://ss64.com/bash/syntax-prompt.html
 # https://dougbarton.us/Bash/Bash-prompts.html
 # http://sage.ucsc.edu/xtal/iterm_tab_customization.html
-echo "$HOME/.dotfiles/.bash_files"/*
 
 for DOTFILE in `find $HOME/.dotfiles/.bash_files`
 do

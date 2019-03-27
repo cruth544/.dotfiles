@@ -87,6 +87,12 @@ if [[ -L "$tmux_path" ]] ; then
 	ln -s "$tmux_path" "$HOME/.tmux.conf"
 fi
 
+echo "Continue with brew installs and mac settings? [y/n]"
+read brew_install
+if [ "$brew_install" = 'n' ]
+then exit 1
+fi
+
 echo "Asking for sudo"
 sudo -v
 

@@ -5,6 +5,7 @@
 alias bprofile='vim ~/.dotfiles/.bash_files'
 alias dotfiles='cd ~/.dotfiles'
 alias vimrc='vim ~/.dotfiles/.vim/.vimrc'
+alias vim="stty stop '' -ixoff ; vim" # disable terminal ctrl + key commands
 alias karabiner='cd ~/Library/Application\ Support/Karabiner'
 alias inspect='nodemon --inspect'
 
@@ -62,7 +63,8 @@ alias rm='rm -v'
 alias mkdir='mkdir -pv'
 
 alias gitignore='cp ~/.dotfiles/.gitignore_global ./.gitignore;'
-
+alias gitprune-merged="git branch --no-color --merged > /tmp/merged-branches && find /tmp/merged-branches | xargs sed -i '' 's/^\*.*$//g' && vim /tmp/merged-branches && xargs git branch -d < /tmp/merged-branches"
+# alias gitprune-deleted-remote='git fetch --prune && git branch -r --no-color | awk '"'"'{print $1}'"'"' | egrep -o "/.+" | sed "s/\///" | xargs -n 1 echo | xargs -n 1 -I {} sh -c "echo s,{},,;" >> /tmp/sed-branch-commands && echo "/^[[:space:]]*$/d" >> /tmp/sed-branch-commands && git branch --no-color | sed "s/\*//" | awk '"'"'{print $1}'"'"' >> /tmp/delete-branches && sed -i "" -f /tmp/sed-branch-commands /tmp/delete-branches && vim /tmp/delete-branches && xargs git branch -d </tmp/delete-branches; rm /tmp/delete-branches; rm /tmp/sed-branch-commands'
 
 # =================
 # Change System Settings
@@ -75,7 +77,6 @@ alias show_desktop="defaults write com.apple.finder CreateDesktop -bool true && 
 # Hide/show hidden files in Finder
 alias hideFiles="defaults write com.apple.finder AppleShowAllFiles FALSE && killall Finder"
 alias showFiles="defaults write com.apple.finder AppleShowAllFiles TRUE && killall Finder"
-
 
 # =================
 # Fun

@@ -1,6 +1,9 @@
 # This is a list of rules for ignoring files in every Git repositories on your computer.
 # See https://help.github.com/articles/ignoring-files
 
+# Env files
+.env
+
 # Compiled source #
 ###################
 *.class

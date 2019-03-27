@@ -8,14 +8,15 @@ brew_install_with_cask() {
 	if [[ ${#list[@]} -gt 0 ]]
 	then
 		echo "Installing... : ${list[@]}"
-		sleep 5
 
 		for i in "${list[@]}"
 		do
-			if [[ -z "$1" ]] ; then
-				if [ "$1" = true ] ; then
+			if [ "$1" = true ] ; then
+				if [[ ! -d /Applications/*"$1"*.app ]] ; then
 					brew cask install "$i"
-				else
+				fi
+			else
+				if ! [[ "$(command -v $i)" ]] ; then
 					brew install "$i"
 				fi
 			fi
@@ -26,14 +27,17 @@ brew_install_with_cask() {
 
 
 declare -a tools=(
+  'ack'
 	'archey'
 	'dfu-util'
+  'fzf'
 	'git'
 	'go'
 	'libusb'
 	'node'
 	'nvm'
 	'openssl'
+  'ripgrep'
 )
 declare -a casks=(
 	'1password'
@@ -43,6 +47,7 @@ declare -a casks=(
 	'google-chrome'
 	'karabiner'
 	'postman'
+	'signal'
 	'slack'
 	'spectacle'
 	'sublime-text'
@@ -74,6 +79,14 @@ if [[ -L "$vim_path" ]] ; then
 	ln -s "$vim_path" "$HOME/.vimrc"
 fi
 
+tmux_path="$HOME/.dotfiles/.tmux/.tmux.conf"
+tmux_plugins_path="$HOME/.dotfiles/.tmux/plugins/tpm"
+if [[ -L "$tmux_path" ]] ; then
+	echo "Installling tmux settings"
+	git clone "https://github.com/tmux-plugins/tpm" "$tmux_plugins_path"
+	ln -s "$tmux_path" "$HOME/.tmux.conf"
+fi
+
 echo "Asking for sudo"
 sudo -v
 
@@ -83,7 +96,9 @@ brew_install_with_cask false ${tools[@]} &&
 brew_install_with_cask true ${casks[@]}
 
 #echo "Downloading non-brew apps"
-#curl -s https://www.sketchapp.com/updates/ | grep -m 1 'a\sclass="update-download"' | grep -om 1 'http.*\.zip' | xargs curl -O
+if [[ ! -d /Applications/Sketch.app ]] ; then
+	curl -s https://www.sketchapp.com/updates/ | grep -m 1 'a\sclass="update-download"' | grep -om 1 'http.*\.zip' | xargs curl -O && unzip sketch*.zip && mv Sketch.app/ /Applications/ && rm sketch*.zip
+fi
 
 echo "Changing Mac settings..."
 # Kill System Preferences to prevent override
@@ -151,5 +166,5 @@ defaults write com.apple.finder FXPreferredViewStyle -string "clmv"
 defaults write com.apple.menuextra.battery ShowPercent YES &&
 killall SystemUIServer
 
-echo "Finished changing settigns"
+echo "Finished changing settings"
 

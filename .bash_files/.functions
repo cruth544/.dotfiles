@@ -11,7 +11,7 @@ function google() {
 }
 
 function wiki() {
-    search=""
+  search=""
   for term in $@; do
     search="$search%20$term"
   done
@@ -35,6 +35,20 @@ function title() {
   printf "\033]0;%s\007" "$title"
 }
 
+# Git functions
+function gitprune-deleted-remote() {
+  modifier='d'
+  if [[ $1 = 'force' ]]
+    then
+      modifier='D'
+  fi
+
+  git fetch --prune && git branch -r --no-color | awk '{print $1}' | egrep -o "/.+" | sed "s/\///" | xargs -n 1 echo | xargs -n 1 -I {} sh -c "echo s,{},,;" >> /tmp/sed-branch-commands && echo "/^[[:space:]]*$/d" >> /tmp/sed-branch-commands && git branch --no-color | sed "s/\*//" | awk '{print $1}' >> /tmp/delete-branches && sed -i "" -f /tmp/sed-branch-commands /tmp/delete-branches && vim /tmp/delete-branches && xargs git branch -$modifier </tmp/delete-branches;
+
+  command rm /tmp/delete-branches;
+  command rm /tmp/sed-branch-commands;
+}
+
 # ls Grep
 function lsg() {
 	ls | egrep "$@"
@@ -44,6 +58,40 @@ function lsag() {
 	ls -a | egrep "$@"
 }
 alias lsga='lsag'
+
+######################################
+# Create tmux session                #
+######################################
+# WORK IN PROGRESS
+# TODO: Finish this command
+
+function tmux-create() {
+  SESSIONNAME="services"
+  tmux has-session -t $SESSIONNAME &> /dev/null
+
+  # C-m === enter
+  # C-l === clear
+  declare -a tmux_commands=(
+    # 'tmux send-keys -t $SESSIONNAME "odesus" C-m'
+    'tmux send-keys -t $SESSIONNAME "tmux split-window" C-m'
+    'tmux send-keys -t $SESSIONNAME "tmux split-window -h" C-m'
+    'tmux send-keys -t $SESSIONNAME "tmux split-window" C-m'
+    'tmux send-keys -t $SESSIONNAME "tmux split-window -h" C-m'
+  )
+
+  # if [ $? != 0 ]
+   # then
+      tmux new-session -s $SESSIONNAME -n services -d
+      for command in "${tmux_commands[@]}"; do
+        $command
+        # tmux send-keys -t $SESSIONNAME "odesus" C-m
+        # tmux send-keys -t $SESSIONNAME C-l
+      done
+  # fi
+
+  tmux attach -t $SESSIONNAME
+}
+
 #function docker-env() {
 	#"eval \"\$(docker-machine env $@)\""
 #}

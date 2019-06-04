@@ -63,7 +63,7 @@ alias rm='rm -v'
 alias mkdir='mkdir -pv'
 
 alias gitignore='cp ~/.dotfiles/.gitignore_global ./.gitignore;'
-alias gitprune-merged="git branch --no-color --merged > /tmp/merged-branches && find /tmp/merged-branches | xargs sed -i '' 's/^\*.*$//g' && vim /tmp/merged-branches && xargs git branch -d < /tmp/merged-branches"
+alias gitprune-merged="git branch --no-color --merged > /tmp/merged-branches && find /tmp/merged-branches | xargs sed -i '' 's/^\*.*$//g' && $EDITOR /tmp/merged-branches && xargs git branch -d < /tmp/merged-branches"
 # alias gitprune-deleted-remote='git fetch --prune && git branch -r --no-color | awk '"'"'{print $1}'"'"' | egrep -o "/.+" | sed "s/\///" | xargs -n 1 echo | xargs -n 1 -I {} sh -c "echo s,{},,;" >> /tmp/sed-branch-commands && echo "/^[[:space:]]*$/d" >> /tmp/sed-branch-commands && git branch --no-color | sed "s/\*//" | awk '"'"'{print $1}'"'"' >> /tmp/delete-branches && sed -i "" -f /tmp/sed-branch-commands /tmp/delete-branches && vim /tmp/delete-branches && xargs git branch -d </tmp/delete-branches; rm /tmp/delete-branches; rm /tmp/sed-branch-commands'
 
 # =================

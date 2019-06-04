@@ -187,8 +187,9 @@ vnoremap <Leader>c :w !pbcopy<CR><CR>
 vnoremap < <gv
 vnoremap > >gv
 " move lines up and down
-vnoremap <C-k> :m-2<CR>gv
+" vnoremap <C-k> :m-2<CR>gv
 vnoremap <C-j> :m '>+<CR>gv
+vnoremap <C-k> :m '<-2<CR>gv
 
 " cut into last yank
 vnoremap x "0d
@@ -259,6 +260,16 @@ function! s:ZoomToggle() abort
 endfunction
 command! ZoomToggle call s:ZoomToggle()
 nnoremap <silent> <Leader>z :ZoomToggle<CR>
+
+" Add to end of line
+function! s:AddToEndOfLine(char)
+  execute 's/'.a:char.'\?$/'.a:char.'/'
+endfunction
+
+command! -range -nargs=1 AddToEndOfLine <line1>,<line2>call s:AddToEndOfLine(<f-args>)
+nnoremap <silent> <Leader>, :AddToEndOfLine<space>
+vnoremap <silent> <Leader>, :AddToEndOfLine<space>
+
 
 
 """""""""""""""""""

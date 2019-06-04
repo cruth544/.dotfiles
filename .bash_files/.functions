@@ -43,7 +43,7 @@ function gitprune-deleted-remote() {
       modifier='D'
   fi
 
-  git fetch --prune && git branch -r --no-color | awk '{print $1}' | egrep -o "/.+" | sed "s/\///" | xargs -n 1 echo | xargs -n 1 -I {} sh -c "echo s,{},,;" >> /tmp/sed-branch-commands && echo "/^[[:space:]]*$/d" >> /tmp/sed-branch-commands && git branch --no-color | sed "s/\*//" | awk '{print $1}' >> /tmp/delete-branches && sed -i "" -f /tmp/sed-branch-commands /tmp/delete-branches && vim /tmp/delete-branches && xargs git branch -$modifier </tmp/delete-branches;
+  git fetch --prune && git branch -r --no-color | awk '{print $1}' | egrep -o "/.+" | sed "s/\///" | xargs -n 1 echo | xargs -n 1 -I {} sh -c "echo s,{},,;" >> /tmp/sed-branch-commands && echo "/^[[:space:]]*$/d" >> /tmp/sed-branch-commands && git branch --no-color | sed "s/\*//" | awk '{print $1}' >> /tmp/delete-branches && sed -i "" -f /tmp/sed-branch-commands /tmp/delete-branches && $EDITOR /tmp/delete-branches && xargs git branch -$modifier </tmp/delete-branches;
 
   command rm /tmp/delete-branches;
   command rm /tmp/sed-branch-commands;
@@ -58,6 +58,11 @@ function lsag() {
 	ls -a | egrep "$@"
 }
 alias lsga='lsag'
+
+# history Grep
+function hg() {
+  history | egrep "$@"
+}
 
 ######################################
 # Create tmux session                #

@@ -41,11 +41,12 @@ declare -a tools=(
 )
 declare -a casks=(
 	'1password'
-	'authy'
+	# 'authy'
 	'dropbox'
 	'docker'
 	'google-chrome'
-	'karabiner'
+  'firefox'
+	# 'karabiner'
 	'postman'
 	'signal'
 	'slack'

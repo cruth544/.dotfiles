@@ -60,9 +60,13 @@ declare -a casks=(
 echo "Installing xcode tools"
 xcode-select --install || softwareupdate --install xcode-select
 
-if [[ -z brew ]] ; then
+# if ! [[ -z brew ]] ; then
+if ! [[ "$(command -v brew)" ]] ; then
 	echo "Installing brew"
 	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+else
+	echo "Brew already installed"
+	brew update
 fi
 
 echo "Saving backup of old bash_profile..." &&
@@ -98,7 +102,7 @@ echo "Asking for sudo"
 sudo -v
 
 brew update &&
-brew tap caskroom/cask &&
+# brew tap caskroom/cask-cask-cask &&
 brew_install_with_cask false ${tools[@]} &&
 brew_install_with_cask true ${casks[@]}
 

@@ -1,0 +1,193 @@
+# =================
+# Functions
+# =================
+
+function google() {
+  search=""
+  for term in $@; do
+    search="$search%20$term"
+  done
+  chrome "http://www.google.com/search?q=$search"
+}
+
+function wiki() {
+  search=""
+  for term in $@; do
+    search="$search%20$term"
+  done
+  chrome "https://en.wikipedia.org/wiki/Special:Search/$search"
+}
+
+function stack() {
+  search=""
+  for term in $@; do
+    search="$search%20$term"
+  done
+  chrome "http://stackoverflow.com/search?q=$search"
+}
+
+# Title window
+function title() {
+  title=""
+  for term in $@; do
+    title="$title $term"
+  done
+	echo -e "\033];$title\007"
+}
+
+# Git functions
+function gitprune-deleted-remote() {
+  modifier='d'
+  if [[ $1 = 'force' ]]
+    then
+      modifier='D'
+  fi
+
+  git fetch --prune && git branch -r --no-color | awk '{print $1}' | egrep -o "/.+" | sed "s/\///" | xargs -n 1 echo | xargs -n 1 -I {} sh -c "echo s,{},,;" >> /tmp/sed-branch-commands && echo "/^[[:space:]]*$/d" >> /tmp/sed-branch-commands && git branch --no-color | sed "s/\*//" | awk '{print $1}' >> /tmp/delete-branches && sed -i "" -f /tmp/sed-branch-commands /tmp/delete-branches && $EDITOR /tmp/delete-branches && xargs git branch -$modifier </tmp/delete-branches;
+
+  command rm /tmp/delete-branches;
+  command rm /tmp/sed-branch-commands;
+}
+
+# ls Grep
+function lsg() {
+	ls | egrep "$@"
+}
+
+function lsag() {
+	ls -a | egrep "$@"
+}
+alias lsga='lsag'
+
+# history Grep
+function hg() {
+  history | egrep "$@"
+}
+
+######################################
+# Create tmux session                #
+######################################
+# WORK IN PROGRESS
+# TODO: Finish this command
+
+function tmux-create() {
+  SESSIONNAME="services"
+  tmux has-session -t $SESSIONNAME &> /dev/null
+
+  # C-m === enter
+  # C-l === clear
+  declare -a tmux_commands=(
+    # 'tmux send-keys -t $SESSIONNAME "odesus" C-m'
+    'tmux send-keys -t $SESSIONNAME "tmux split-window" C-m'
+    'tmux send-keys -t $SESSIONNAME "tmux split-window -h" C-m'
+    'tmux send-keys -t $SESSIONNAME "tmux split-window" C-m'
+    'tmux send-keys -t $SESSIONNAME "tmux split-window -h" C-m'
+  )
+
+  # if [ $? != 0 ]
+   # then
+      tmux new-session -s $SESSIONNAME -n services -d
+      for command in "${tmux_commands[@]}"; do
+        $command
+        # tmux send-keys -t $SESSIONNAME "odesus" C-m
+        # tmux send-keys -t $SESSIONNAME C-l
+      done
+  # fi
+
+  tmux attach -t $SESSIONNAME
+}
+
+#function docker-env() {
+	#"eval \"\$(docker-machine env $@)\""
+#}
+
+# function git() {
+#   if [[ $@ == 'init' ]]; then
+#     echo 'git init; cp ~/.dotfiles/.gitignore_global ./.gitignore;'
+#   else
+#     rest='$@'
+#     echo 'git $rest'
+#   fi
+# }
+#######################################
+# Start an HTTP server from a directory
+# Arguments:
+#  Port (optional)
+#######################################
+
+server() {
+  local port="${1:-8000}"
+  (sleep 2 && open "http://localhost:${port}/")&
+
+  # Simple Pythong Server:
+  # python -c $'import SimpleHTTPServer;\nmap = SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map;\nmap[""] = "text/plain";\nfor key, value in map.items():\n\tmap[key] = value + ";charset=UTF-8";\nSimpleHTTPServer.test();' "$port"
+
+  # Simple Ruby Webrick Server:
+  ruby -e "require 'webrick';server = WEBrick::HTTPServer.new(:Port=>${port},:DocumentRoot=>Dir::pwd );trap('INT'){ server.shutdown };server.start"
+}
+
+stop() {
+  lsof -i TCP:$@ | grep -v 'PID' | egrep -o '\s\d+\s' | xargs kill
+}
+
+#######################################
+# List any open internet sockets on
+# several popular ports. Useful if a
+# rogue server is running.
+# - http://www.akadia.com/services/lsof_intro.html
+# - http://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers
+#
+# No Arguments.
+#######################################
+
+rogue() {
+  # add or remove ports to check here!
+  local PORTS="3000 3012 3014 3306 4502 4567 6379 8000 8080 8888 27017"
+  local MESSAGE="> Checking for processes on port"
+  local COMMAND="lsof"
+
+  if [ $@ ]; then
+    MESSAGE="${MESSAGE} $@ "
+    COMMAND="${COMMAND} -i TCP:$@"
+  else
+    MESSAGE="${MESSAGE}s"
+    for PORT in $PORTS; do
+      MESSAGE="${MESSAGE} ${PORT},"
+      COMMAND="${COMMAND} -i TCP:${PORT}"
+    done
+  fi
+
+  echo "${MESSAGE%?}..."
+  local OUTPUT="$(${COMMAND})"
+
+  if [ -z "$OUTPUT" ]; then
+    echo "> Nothing running!"
+  else
+    echo "> Processes found:"
+    printf "\n$OUTPUT\n\n"
+    echo "> Use the 'kill' command with the 'PID' of any process you want to quit."
+    echo
+  fi
+}
+
+
+#######################################
+# Set ACL permissions to inherit and
+# allow read, write and update actions.
+#
+# Arguments:
+#   1. Group Name
+#   2. Directory Path
+#######################################
+
+allow_group() {
+  local GROUP_NAME="$1"
+  local TARGET_DIR="$2"
+  local PERMISSIONS="read,write,delete,add_file,add_subdirectory"
+  local INHERITANCE="file_inherit,directory_inherit"
+
+  sudo mkdir -p "$TARGET_DIR"
+  sudo /bin/chmod -R -N "$TARGET_DIR"
+  sudo /bin/chmod -R +a "group:$GROUP_NAME:allow $PERMISSIONS,$INHERITANCE" "$TARGET_DIR"
+}
+

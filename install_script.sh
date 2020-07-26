@@ -29,7 +29,9 @@ brew_install_with_cask() {
 declare -a tools=(
   'ack'
 	'archey'
+  'awscli'
 	'dfu-util'
+  'docker'
   'fzf'
 	'git'
 	'go'
@@ -66,19 +68,19 @@ if ! [[ "$(command -v brew)" ]] ; then
 	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 else
 	echo "Brew already installed"
-	brew update
 fi
 
-echo "Saving backup of old bash_profile..." &&
-cp $HOME/.bash_profile $HOME/.bash_profile_backup ||
-echo "No previous bash_profile"
+echo "Saving backup of old .zshrc..." &&
+cp $HOME/.zshrc $HOME/.zshrc_backup ||
+echo "No previous .zshrc"
 
 echo "Copying dotfiles to root" &&
-cp $HOME/.dotfiles/.bash_profile $HOME/
+cp $HOME/.dotfiles/.zshrc $HOME/ &&
+cp -R $HOME/.dotfiles/.zsh $HOME/
 
 vim_path="$HOME/.dotfiles/.vim/.vimrc"
 vundle_path="$HOME/.dotfiles/.vim/bundle/vundle.vim"
-if [[ -L "$vim_path" ]] ; then
+if [[ -a "$vim_path" ]] ; then
 	echo "Installling vim settings"
 	git clone "https://github.com/VundleVim/Vundle.vim.git" "$vundle_path"
 	ln -s "$vim_path" "$HOME/.vimrc"
@@ -86,7 +88,7 @@ fi
 
 tmux_path="$HOME/.dotfiles/.tmux/.tmux.conf"
 tmux_plugins_path="$HOME/.dotfiles/.tmux/plugins/tpm"
-if [[ -L "$tmux_path" ]] ; then
+if [[ -a "$tmux_path" ]] ; then
 	echo "Installling tmux settings"
 	git clone "https://github.com/tmux-plugins/tpm" "$tmux_plugins_path"
 	ln -s "$tmux_path" "$HOME/.tmux.conf"

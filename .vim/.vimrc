@@ -43,13 +43,14 @@ Plugin 'kana/vim-textobj-user'
 Plugin 'kana/vim-textobj-line'
 
 " Snippet dependencies
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
+" Plugin 'MarcWeber/vim-addon-mw-utils'
+" Plugin 'tomtom/tlib_vim'
+
 " Snippets
-Plugin 'garbas/vim-snipmate'
+" Plugin 'garbas/vim-snipmate'
 
 " Snippet optional plugins
-Plugin 'honza/vim-snippets'
+" Plugin 'honza/vim-snippets'
 
 " Emmet
 Plugin 'mattn/emmet-vim'
@@ -57,6 +58,7 @@ runtime macros/matchit.vim
 
 " Match Opening and Closing Symbols
 Plugin 'valloric/MatchTagAlways'
+
 " Drop line on enter (inside closing tags)
 Plugin 'delimitMate.vim'
 
@@ -112,10 +114,13 @@ Plugin 'groenewege/vim-less'
 Plugin 'Townk/vim-autoclose'
 
 " TypeScript Syntax
-Plugin 'leafgarland/typescript-vim'
+" Plugin 'leafgarland/typescript-vim'
 
 " Mustache .hbs files syntax
 Plugin 'mustache/vim-mustache-handlebars'
+
+" Go Plugin
+Plugin 'fatih/vim-go'
 
 " Color Package
 Plugin 'chriskempson/base16-vim'
@@ -154,6 +159,9 @@ colorscheme monokai
 
 " Remove trailing whitespace
 autocmd BufWritePre * %s/\s\+$//e
+
+" Run GoFmt on save for go files
+" au BufWritePost *.go !gofmt -w %
 
 " Reload vimrc
 " command Reload :so ~/.vimrc
@@ -327,15 +335,38 @@ let NERDSpaceDelims=1
 " Vim-Airline display buffers
 let g:airline#extensions#tabline#enabled=1
 
+let $FZF_DEFAULT_COMMAND = 'rg
+	\ --files --hidden
+  \ -g "!*.{min.js,swp,o,zip}"
+	\ -g "!{.git,dist}/*" '
+
 command! -bang -nargs=? -complete=dir Files
   \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+
 nnoremap <C-p> :Files<CR>
 
-command! -bang -nargs=* Ag
-  \ call fzf#vim#ag(<q-args>,
-  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
-  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \                 <bang>0)
+" if executable('ag')
+	" " Use ag over grep
+	" set grepprg=ag\ --nogroup\ --nocolor
+
+  " " " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+	" let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " " " ag is fast enough that CtrlP doesn't need to cache
+	" let g:ctrlp_use_caching = 0
+
+	" command! -bang -nargs=* Ag
+		" \ call ag#vim#files(<q-args>,
+		" \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+		" \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+		" \                 <bang>0)
+
+	" " set #FZF_DEFAULT_COMMAND = 'ag --nogroup --nocolor --column'
+
+	" nnoremap <C-p> :Ag<CR>
+
+	" nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+" endif
 
 let g:rg_command_find_all = '
   \ rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --color "always"
@@ -348,6 +379,16 @@ command! -bang -nargs=* Rg
   \   <bang>0 ? fzf#vim#with_preview('up:60%')
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
+
+function! RipgrepFzf(query, fullscreen)
+  let command_fmt = 'rg --files --color=always --smart-case -- %s || true'
+  let initial_command = printf(command_fmt, shellescape(a:query))
+  let reload_command = printf(command_fmt, '{q}')
+  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+endfunction
+
+command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 
 command! -bang -nargs=* FA call fzf#vim#grep(g:rg_command_find_all .shellescape(<q-args>), 1, <bang>0)
 nnoremap <Leader>f :Rg!<CR>

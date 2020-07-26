@@ -2,10 +2,10 @@
 # Aliases
 # ====================
 
-alias bprofile='vim ~/.dotfiles/.bash_files'
+alias bprofile='vim ~/.dotfiles/.zsh_files'
 alias dotfiles='cd ~/.dotfiles'
 alias vimrc='vim ~/.dotfiles/.vim/.vimrc'
-# alias vim="stty stop '' -ixoff ; vim" # disable terminal ctrl + key commands
+alias vim="stty stop '' -ixoff ; vim" # disable terminal ctrl + key commands
 alias karabiner='cd ~/Library/Application\ Support/Karabiner'
 alias inspect='nodemon --inspect'
 
@@ -54,7 +54,7 @@ alias b='cd ..'
 alias h='history'
 
 # If we make a change to our bash profile we need to reload it
-alias reload="source ~/.bash_profile"
+alias reload="source ~/.zshrc"
 
 # Execute verbosely
 alias cp='cp -rv'

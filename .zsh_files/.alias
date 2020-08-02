@@ -23,7 +23,7 @@ alias chrome='open -a "Google Chrome"'
 #alias whalesay='docker run docker/whalesay cowsay $@'
 ## 'ls' lists information about files.
 # By default, show slashes for directories.
-alias ls='ls -F'
+alias ls='ls -GF'
 alias lsa='ls -a'
 alias lsh='ls -lh'
 

@@ -58,7 +58,7 @@ alias reload="source ~/.zshrc"
 
 # Execute verbosely
 alias cp='cp -rv'
-alias mv='mv -v'
+alias mv='mv -vi'
 alias rm='rm -v'
 alias mkdir='mkdir -pv'
 

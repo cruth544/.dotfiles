@@ -33,7 +33,7 @@ Plugin 'rking/ag.vim'
 " Plugin 'vim-syntastic/syntastic'
 
 " Linter
-Plugin 'w0rp/ale'
+" Plugin 'w0rp/ale'
 
 " L9 - Library
 Plugin 'vim-scripts/l9'
@@ -43,17 +43,17 @@ Plugin 'kana/vim-textobj-user'
 Plugin 'kana/vim-textobj-line'
 
 " Snippet dependencies
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
+" Plugin 'MarcWeber/vim-addon-mw-utils'
+" Plugin 'tomtom/tlib_vim'
 " Snippets
-Plugin 'garbas/vim-snipmate'
+" Plugin 'garbas/vim-snipmate'
 
 " Snippet optional plugins
-Plugin 'honza/vim-snippets'
+" Plugin 'honza/vim-snippets'
 
 " Emmet
-Plugin 'mattn/emmet-vim'
-runtime macros/matchit.vim
+" Plugin 'mattn/emmet-vim'
+" runtime macros/matchit.vim
 
 " Match Opening and Closing Symbols
 Plugin 'valloric/MatchTagAlways'
@@ -70,11 +70,11 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-abolish'
 
 " Git support
-Plugin 'tpope/vim-fugitive'
+" Plugin 'tpope/vim-fugitive'
 " Git Gutter
-Plugin 'airblade/vim-gitgutter'
+" Plugin 'airblade/vim-gitgutter'
 " Git NerdTree plugin
-Plugin 'Xuyuanp/git-nerdtree'
+" Plugin 'Xuyuanp/git-nerdtree'
 
 " Multiple Cursors
 Plugin 'mg979/vim-visual-multi'
@@ -83,7 +83,7 @@ Plugin 'mg979/vim-visual-multi'
 Plugin 'ervandew/supertab'
 
 " Keyword completion (requires lua)
-Plugin 'Shougo/neocomplete.vim'
+" Plugin 'Shougo/neocomplete.vim'
 
 " CSV Viewer
 Plugin 'chrisbra/csv.vim'
@@ -95,10 +95,10 @@ Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'mxw/vim-jsx' " JSX indentation
 
 " React Snippets
-Plugin 'epilande/vim-react-snippets'
+" Plugin 'epilande/vim-react-snippets'
 
 " UltiSnips
-Plugin 'SirVer/ultisnips'
+" Plugin 'SirVer/ultisnips'
 
 " Commenting
 Plugin 'scrooloose/nerdcommenter'
@@ -112,10 +112,10 @@ Plugin 'groenewege/vim-less'
 Plugin 'Townk/vim-autoclose'
 
 " TypeScript Syntax
-Plugin 'leafgarland/typescript-vim'
+" Plugin 'leafgarland/typescript-vim'
 
 " Mustache .hbs files syntax
-Plugin 'mustache/vim-mustache-handlebars'
+" Plugin 'mustache/vim-mustache-handlebars'
 
 " Color Package
 Plugin 'chriskempson/base16-vim'
@@ -132,9 +132,9 @@ set autoindent
 set smartindent
 " set noexpandtab
 set expandtab
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 
 set wrap
 set nolist  " list disables linebreak
@@ -292,25 +292,25 @@ nnoremap <Leader>O O<Esc>
 nnoremap <Leader>o o<Esc>
 
 " Linter settings
-let g:ale_fixers = {
-\   'javascript': ['eslint'],
-\}
+" let g:ale_fixers = {
+" \   'javascript': ['eslint'],
+" \}
 " command Fix :ALEFix<CR>
 " cnoreabbrev ALEFix Fix
-command LintFix ALEFix
-cnoreabbrev <expr> ALEFix ((getcmdtype() is# ':' && getcmdline() is# 'ALEFix')?('LintFix'):('ALEFix'))
+" command LintFix ALEFix
+" cnoreabbrev <expr> ALEFix ((getcmdtype() is# ':' && getcmdline() is# 'ALEFix')?('LintFix'):('ALEFix'))
 
 " Emmet Settings
-let g:user_emmet_settings = {
-\  'javascript' : {
-\      'extends' : 'jsx',
-\  },
-\}
+" let g:user_emmet_settings = {
+" \  'javascript' : {
+" \      'extends' : 'jsx',
+" \  },
+" \}
 
 " JSX Highlighting
 let g:xml_syntax_folding = 0
 " Trigger configuration (Optional)
-let g:UltiSnipsExpandTrigger="<C-l>"
+" let g:UltiSnipsExpandTrigger="<C-l>"
 
 " NERDCommenter remap
 map <C-\> <Leader>c<space>
@@ -338,15 +338,15 @@ let NERDSpaceDelims=1
 " Vim-Airline display buffers
 let g:airline#extensions#tabline#enabled=1
 
+let $FZF_DEFAULT_COMMAND = 'rg
+	\ --files --hidden
+  \ -g "!*.{min.js,swp,o,zip}"
+	\ -g "!{.git,dist}/*" '
+
 command! -bang -nargs=? -complete=dir Files
   \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
-nnoremap <C-p> :Files<CR>
 
-command! -bang -nargs=* Ag
-  \ call fzf#vim#ag(<q-args>,
-  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
-  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \                 <bang>0)
+nnoremap <C-p> :Files<CR>
 
 let g:rg_command_find_all = '
   \ rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --color "always"
@@ -360,8 +360,19 @@ command! -bang -nargs=* Rg
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
 
+function! RipgrepFzf(query, fullscreen)
+  let command_fmt = 'rg --files --color=always --smart-case -- %s || true'
+  let initial_command = printf(command_fmt, shellescape(a:query))
+  let reload_command = printf(command_fmt, '{q}')
+  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+endfunction
+
+command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+
 command! -bang -nargs=* FA call fzf#vim#grep(g:rg_command_find_all .shellescape(<q-args>), 1, <bang>0)
 nnoremap <Leader>f :Rg!<CR>
+
 
 let g:fuf_keyOpen = "<C-l>"
 let g:fuf_keyOpenTabpage = "<CR>"
@@ -373,7 +384,7 @@ if _curfile =~ "Makefile" || _curfile =~ "makefile" || _curfile =~ ".*\.mk"
 endif
 
 " syntastic settings
-let g:used_javascript_libs = 'underscore,requirejs,react,ramda'
+" let g:used_javascript_libs = 'underscore,requirejs,react,ramda'
 " set statusline+=%#warningmsg#
 " set statusline+=%{SyntasticStatuslineFlag()}
 " set statusline+=%*
@@ -391,13 +402,13 @@ let delimitMate_expand_cr=1
 " Other settings
 
 " JavaScript Libraries
-let g:used_javascript_libs = 'jquery,underscore,angularjs,angularui,angularuirouter,react,flux,backbone,jasmine'
+" let g:used_javascript_libs = 'jquery,underscore,angularjs,angularui,angularuirouter,react,flux,backbone,jasmine'
 
 " TypeScript Indenting Disable
 " let g:typescript_indent_disable = 1
 
 " Handlebar Mustache_Abbreviations
-let g:mustache_abbreviations = 1
+" let g:mustache_abbreviations = 1
 
 " Supertab
 let g:SuperTabDefaultCompletionType= "<c-n>"

@@ -80,7 +80,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'Xuyuanp/git-nerdtree'
 
 " Multiple Cursors
-Plugin 'terryma/vim-multiple-cursors'
+Plugin 'mg979/vim-visual-multi'
 
 " Use <Tab> for insert completion
 Plugin 'ervandew/supertab'
@@ -183,6 +183,17 @@ nnoremap <Leader>P P
 nmap j gj
 nmap k gk
 
+" For Multiple Cursors
+
+let g:VM_no_meta_mappings = 1
+let g:VM_maps = {}
+let g:VM_maps["Clear"]             = '<C-c>'
+let g:VM_maps["Select All"]        = '<Leader>a'
+let g:VM_maps["Visual All"]        = '<Leader>a'
+let g:VM_maps["Align"]             = '<Leader>A'
+let g:VM_maps["Add Cursor Down"]   = '<C-j>'
+let g:VM_maps["Add Cursor Up"]     = '<C-k>'
+
 """""""""""""""""""""""""""""""
 " Insert mode specific remaps "
 """""""""""""""""""""""""""""""
@@ -242,10 +253,10 @@ set splitright
 set splitbelow
 
 " Quicker window movement
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-h> <C-w>h
-nnoremap <C-l> <C-w>l
+" nnoremap <C-j> <C-w>j
+" nnoremap <C-k> <C-w>k
+" nnoremap <C-h> <C-w>h
+" nnoremap <C-l> <C-w>l
 
 nnoremap <C-w>n :vs<CR>
 nnoremap <C-w>s :split<CR>

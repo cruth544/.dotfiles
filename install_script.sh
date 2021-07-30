@@ -44,17 +44,17 @@ declare -a tools=(
 declare -a casks=(
 	'1password'
 	# 'authy'
-	'dropbox'
-	'docker'
-	'google-chrome'
+	# 'dropbox'
+	# 'docker'
+	# 'google-chrome'
   'firefox'
 	# 'karabiner'
 	'postman'
 	'signal'
-	'slack'
+	# 'slack'
 	'spectacle'
-	'sublime-text'
-	'virtualbox'
+	# 'sublime-text'
+	# 'virtualbox'
 )
 
 #################### EXECUTE ########################
@@ -109,9 +109,9 @@ brew_install_with_cask false ${tools[@]} &&
 brew_install_with_cask true ${casks[@]}
 
 #echo "Downloading non-brew apps"
-if [[ ! -d /Applications/Sketch.app ]] ; then
-	curl -s https://www.sketchapp.com/updates/ | grep -m 1 'a\sclass="update-download"' | grep -om 1 'http.*\.zip' | xargs curl -O && unzip sketch*.zip && mv Sketch.app/ /Applications/ && rm sketch*.zip
-fi
+# if [[ ! -d /Applications/Sketch.app ]] ; then
+# 	curl -s https://www.sketchapp.com/updates/ | grep -m 1 'a\sclass="update-download"' | grep -om 1 'http.*\.zip' | xargs curl -O && unzip sketch*.zip && mv Sketch.app/ /Applications/ && rm sketch*.zip
+# fi
 
 echo "Changing Mac settings..."
 # Kill System Preferences to prevent override

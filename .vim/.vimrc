@@ -1,6 +1,7 @@
 set nocompatible
 set rtp+=~/.dotfiles/.vim/bundle/vundle.vim
 set rtp+=~/.dotfiles/.vim
+set encoding=utf-8
 let mapleader = ' '
 call vundle#rc()
 
@@ -100,10 +101,13 @@ Plugin 'mxw/vim-jsx' " JSX indentation
 Plugin 'epilande/vim-react-snippets'
 
 " UltiSnips
-Plugin 'SirVer/ultisnips'
+" Plugin 'SirVer/ultisnips'
 
 " Commenting
 Plugin 'scrooloose/nerdcommenter'
+
+" Autocomplete
+" Plugin 'ycm-core/YouCompleteMe'
 
 " HTML Autocomplete/Syntax
 Plugin 'othree/html5.vim'
@@ -117,7 +121,7 @@ Plugin 'Townk/vim-autoclose'
 " Plugin 'leafgarland/typescript-vim'
 
 " Mustache .hbs files syntax
-Plugin 'mustache/vim-mustache-handlebars'
+" Plugin 'mustache/vim-mustache-handlebars'
 
 " Go Plugin
 Plugin 'fatih/vim-go'
@@ -331,6 +335,9 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " NERDCommenter Settings "
 " add space after comment character
 let NERDSpaceDelims=1
+
+" YouCompleteMe
+let g:ycm_key_list_stop_completion = ['<C-y>', '<Enter>']
 
 " Vim-Airline display buffers
 let g:airline#extensions#tabline#enabled=1

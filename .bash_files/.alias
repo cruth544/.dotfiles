@@ -5,7 +5,7 @@
 alias bprofile='vim ~/.dotfiles/.bash_files'
 alias dotfiles='cd ~/.dotfiles'
 alias vimrc='vim ~/.dotfiles/.vim/.vimrc'
-# alias vim="stty stop '' -ixoff ; vim" # disable terminal ctrl + key commands
+alias vim="stty stop '' -ixoff ; vim" # disable terminal ctrl + key commands
 alias karabiner='cd ~/Library/Application\ Support/Karabiner'
 alias inspect='nodemon --inspect'
 
@@ -58,7 +58,7 @@ alias reload="source ~/.bash_profile"
 
 # Execute verbosely
 alias cp='cp -rv'
-alias mv='mv -v'
+alias mv='mv -vi'
 alias rm='rm -v'
 alias mkdir='mkdir -pv'
 

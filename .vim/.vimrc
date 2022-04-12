@@ -20,6 +20,10 @@ Plugin 'chriskempson/base16-vim'
 " Sensible Vim
 Plugin 'tpope/vim-sensible'
 
+" Obsession
+" vim saver
+Plugin 'tpope/vim-obsession'
+
 " IDE
 " Plugin 'xmementoit/vim-ide'
 

@@ -1,4 +1,9 @@
 set nocompatible
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.dotfiles/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 set rtp+=~/.dotfiles/.vim/bundle/vundle.vim
 set rtp+=~/.dotfiles/.vim
 set encoding=utf-8
@@ -6,6 +11,7 @@ let mapleader = ' '
 
 
 let $VIM_PLUGINS = $HOME . "/.dotfiles/.vim/.vim-plug"
+let $MYVIMRC = $HOME . ".dotfiles/.vim/.vimrc"
 source $VIM_PLUGINS
 let _curfile = expand("%:t")
 
@@ -34,7 +40,7 @@ Plugin 'tpope/vim-obsession'
 Plugin 'vim-scripts/netrw.vim'
 
 " Fuzzy finder for vim
-" Plugin 'junegunn/fzf.vim'
+Plugin 'junegunn/fzf.vim'
 
 " Ctrl+P
 Plugin 'ctrlpvim/ctrlp.vim'
@@ -98,7 +104,7 @@ Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 
 " For special replace functions
-" Plugin 'tpope/vim-abolish'
+Plugin 'tpope/vim-abolish'
 
 " Git support
 " Plugin 'tpope/vim-fugitive'
@@ -216,6 +222,14 @@ nnoremap <Leader>P P
 " Leader + k moves to folder of current file
 nnoremap <Leader>k :Ex<CR>
 
+" Tabs
+" nnoremap } gt
+" nnoremap { gT
+nnoremap <Leader>n :tabnew<CR>
+nnoremap <Leader>] gt
+nnoremap <Leader>[ gT
+
+
 " Move normally between wrapped lines
 nmap j gj
 nmap k gk
@@ -253,17 +267,16 @@ vnoremap <C-k> :m '<-2<CR>gv
 " cut into last yank
 vnoremap x "0d
 
+" Make paste pull from last yank
+vnoremap p "0p
+vnoremap P "0P
+vnoremap <Leader>p p
+vnoremap <Leader>P P
+
 " Buffers
 nnoremap <Leader>b :ls<CR>:b
 nnoremap <Leader>l :ls<CR>:b<Space>
 nnoremap <Leader>q :bd<CR>
-
-" Tabs
-nnoremap } gt
-nnoremap { gT
-nnoremap <Leader>n :tabnew<CR>
-nnoremap <Leader>] gt
-nnoremap <Leader>[ gT
 
 " Remap Ctrl+c to ESC
 nnoremap <C-c> <Esc>

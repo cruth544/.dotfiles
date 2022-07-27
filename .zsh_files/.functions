@@ -60,9 +60,9 @@ function lsag() {
 alias lsga='lsag'
 
 # history Grep
-function hg() {
-  history | egrep "$@"
-}
+# function histg() {
+  # history | egrep "$@"
+# }
 
 ######################################
 # Create tmux session                #

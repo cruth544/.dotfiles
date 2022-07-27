@@ -11,7 +11,7 @@ let mapleader = ' '
 
 
 let $VIM_PLUGINS = $HOME . "/.dotfiles/.vim/.vim-plug"
-let $MYVIMRC = $HOME . ".dotfiles/.vim/.vimrc"
+let $MYVIMRC = $HOME . "/.dotfiles/.vim/.vimrc"
 source $VIM_PLUGINS
 let _curfile = expand("%:t")
 
@@ -114,7 +114,7 @@ Plugin 'tpope/vim-abolish'
 " Plugin 'Xuyuanp/git-nerdtree'
 
 " Multiple Cursors
-" Plugin 'mg979/vim-visual-multi'
+Plugin 'mg979/vim-visual-multi'
 
 " Use <Tab> for insert completion
 " Plugin 'ervandew/supertab'
@@ -352,11 +352,11 @@ vnoremap <silent> <Leader>, :AddToEndOfLine<space>
 """""""""""""""""""
 
 " Use rg for ctrl-p plugin
-if executable('rg')
+" if executable('rg')
   set grepprg=rg\ --hidden\ --color=never
   let g:ctrlp_use_caching = 0
   let g:ctrlp_user_command = 'rg --files --hidden --color=never * %s'
-endif
+" endif
 
 " Linter settings
 " let g:ale_fixers = {
@@ -368,14 +368,12 @@ endif
 " cnoreabbrev <expr> ALEFix ((getcmdtype() is# ':' && getcmdline() is# 'ALEFix')?('LintFix'):('ALEFix'))
 
 " Emmet Settings
-if exists("b:Emmet")
-  let g:user_emmet_leader_key='<C-Z>'
-  let g:user_emmet_settings = {
-  \  'javascript' : {
-  \      'extends' : 'jsx',
-  \  },
-  \}
-endif
+let g:user_emmet_leader_key='<C-Z>'
+let g:user_emmet_settings = {
+\  'javascript' : {
+\      'extends' : 'jsx',
+\  },
+\}
 
 " JSX Highlighting
 let g:xml_syntax_folding = 0
@@ -414,11 +412,12 @@ endif
 let NERDSpaceDelims = 1
 
 " YouCompleteMe
-if exists("b:YcmCompleter")
-  let g:ycm_key_list_stop_completion = ['<C-y>', '<Enter>', '<CR>']
+" if exists("b:YcmCompleter")
+  let g:ycm_key_list_stop_completion = ['<C-y>', '<ENTER>', '<CR>']
   nnoremap <leader>jd :YcmCompleter GoTo<CR>
   nnoremap <leader>jr :YcmCompleter GoToReferences<CR>
-endif
+  inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
+" endif
 
 " Vim-Airline display buffers
 let g:airline#extensions#tabline#enabled = 1

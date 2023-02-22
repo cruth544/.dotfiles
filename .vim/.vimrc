@@ -229,6 +229,8 @@ nnoremap <Leader>n :tabnew<CR>
 nnoremap <Leader>] gt
 nnoremap <Leader>[ gT
 
+nmap <Leader>cf :let @" = expand('%:t')<CR>
+
 
 " Move normally between wrapped lines
 nmap j gj

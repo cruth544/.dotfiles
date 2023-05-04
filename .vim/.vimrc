@@ -230,6 +230,7 @@ nnoremap <Leader>] gt
 nnoremap <Leader>[ gT
 
 nmap <Leader>cf :let @" = expand('%:t')<CR>
+nmap <Leader>cp :let @" = expand("%")<CR>
 
 
 " Move normally between wrapped lines

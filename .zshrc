@@ -25,12 +25,20 @@ zstyle ':completion:*:*:git:*' script ~/.dotfiles/.bash_files/.git-completion.ba
 fpath=(~/.zsh $fpath)
 autoload -Uz compinit && compinit
 
+# Enables fzf
+if [[ -f /usr/share/doc/fzf/examples/key-bindings.zsh ]]; then
+  source /usr/share/doc/fzf/examples/key-bindings.zsh
+  source /usr/share/doc/fzf/examples/completion.zsh
+fi
+
 # source ~/.dotfiles/.docker-completion.bash # If you have docker installed
 # source ~/.dotfiles/.vim/.vimrc # Follow README.md under .vim folder
 
 # ====================================
 # Environmental Variables and API Keys
 # ====================================
+export EDITOR=vim
+set -o emacs
 
 # Below here is an area for other commands added by outside programs or
 # commands. Attempt to reserve this area for their use!

@@ -7,6 +7,7 @@ endif
 set rtp+=~/.dotfiles/.vim/bundle/vundle.vim
 set rtp+=~/.dotfiles/.vim
 set encoding=utf-8
+set mouse=
 let mapleader = ' '
 
 
@@ -22,6 +23,7 @@ let off = 0
 
 " Color Package
 Plugin 'chriskempson/base16-vim'
+Plugin 'sainnhe/sonokai'
 
 " Sensible Vim
 Plugin 'tpope/vim-sensible'
@@ -96,6 +98,7 @@ Plugin 'scrooloose/nerdcommenter'
 
 " Autocomplete
 " Plugin 'ycm-core/YouCompleteMe'
+Plugin 'neovim/nvim-lspconfig'
 
 " UltiSnips
 Plugin 'SirVer/ultisnips'
@@ -126,6 +129,10 @@ if _curfile =~ ".*\.csv"
   " CSV Viewer
   Plugin 'chrisbra/csv.vim'
 endif
+
+" Syntax Highlighting
+Plugin 'sheerun/vim-polyglot'
+Plugin 'nvim-treesitter/nvim-treesitter'
 
 if _curfile =~ ".*\.jsx?"
   " ESLint
@@ -194,7 +201,18 @@ set ttimeoutlen=0
 set backspace=indent,eol,start
 
 " Monokai Color
-colorscheme monokai
+" colorscheme monokai
+
+" Sonokai Color
+if has('termguicolors')
+  set termguicolors
+endif
+
+let g:sonokai_style = 'default'
+let g:sonokai_better_performance = 1
+
+colorscheme sonokai
+let g:lightline = {'colorscheme' : 'sonokai'}
 
 " Remove trailing whitespace
 autocmd BufWritePre * %s/\s\+$//e
@@ -355,11 +373,11 @@ vnoremap <silent> <Leader>, :AddToEndOfLine<space>
 """""""""""""""""""
 
 " Use rg for ctrl-p plugin
-" if executable('rg')
+if executable('rg')
   set grepprg=rg\ --hidden\ --color=never
   let g:ctrlp_use_caching = 0
   let g:ctrlp_user_command = 'rg --files --hidden --color=never * %s'
-" endif
+endif
 
 " Linter settings
 " let g:ale_fixers = {

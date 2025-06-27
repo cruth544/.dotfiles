@@ -274,15 +274,16 @@ tmux_conf_copy_to_os_clipboard=false
 
 # increase history size
 set -g history-limit 20000
-set-window-option -g mode-keys vi
+# set-window-option -g mode-keys emacs
+set -g status-keys emacs
 
 # start with mouse mode enabled
-#set -g mouse on
+# set -g mouse on
 
 # force Vi mode
 #   really you should export VISUAL or EDITOR environment variable, see manual
-#set -g status-keys vi
-#set -g mode-keys vi
+# set -g status-keys vi
+set -g mode-keys vi
 
 # replace C-b by C-a instead of using both prefixes
 # set -gu prefix2
@@ -291,5 +292,11 @@ set-window-option -g mode-keys vi
 # set -g prefix C-a
 # bind C-a send-prefix
 
+set -g prefix C-q                         # GNU-Screen compatible prefix
+bind C-q send-prefix
+
 # move status line to top
-#set -g status-position top
+# set -g status-position top
+
+run -b 'set -o emacs'
+run -b 'tmux set -o emacs'

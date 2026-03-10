@@ -18,6 +18,7 @@ declare -a tools=(
   'neovim'
   'openssl'
   'ripgrep'
+  'tmux'
 )
 
 declare -a casks=(

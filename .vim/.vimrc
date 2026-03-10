@@ -36,16 +36,17 @@ Plugin 'tpope/vim-obsession'
 " Plugin 'xmementoit/vim-ide'
 
 " File Tree structure
-" Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdtree'
 
 " Netrw
 Plugin 'vim-scripts/netrw.vim'
 
 " Fuzzy finder for vim
+Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 
 " Ctrl+P
-Plugin 'ctrlpvim/ctrlp.vim'
+" Plugin 'ctrlpvim/ctrlp.vim'
 
 " Better status line
 Plugin 'vim-airline/vim-airline'
@@ -238,7 +239,7 @@ nnoremap <Leader>p p
 nnoremap <Leader>P P
 
 " Leader + k moves to folder of current file
-nnoremap <Leader>k :Ex<CR>
+" nnoremap <Leader>k :Ex<CR>
 
 " Tabs
 " nnoremap } gt
@@ -371,13 +372,24 @@ vnoremap <silent> <Leader>, :AddToEndOfLine<space>
 """""""""""""""""""
 " Plugin Settings "
 """""""""""""""""""
+" fzf search
+let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --color=never -g "!{.git,node_modules,dist,build,.expo}/*"'
+nnoremap <C-p> :Files<CR>
+
+" Ripgrep search with preview window
+nnoremap <Leader>f :Rg<Space>
 
 " Use rg for ctrl-p plugin
-if executable('rg')
-  set grepprg=rg\ --hidden\ --color=never
-  let g:ctrlp_use_caching = 0
-  let g:ctrlp_user_command = 'rg --files --hidden --color=never * %s'
-endif
+" if executable('rg')
+  " set grepprg=rg\ --hidden\ --color=never
+  " let g:ctrlp_use_caching = 0
+  " let g:ctrlp_user_command = 'rg --files --hidden --color=never -g "!{node_modules,.git}/*" %s'
+  " " let g:ctrlp_user_command = 'rg --files --hidden --color=never * %s'
+  " let g:ctrlp_custom_ignore = {
+  " \ 'dir':  '\v?[\/]?\.?(git|hg|svn|node_modules)$',
+  " \ 'file': '\v\.(exe|so|dll)$',
+  " \ }
+" endif
 
 " Linter settings
 " let g:ale_fixers = {
@@ -412,9 +424,9 @@ map <C-\> <Leader>c<space>
 map <Leader>/ <Leader>c<space>
 
 " NERDTree remap
-if exists("b:NERDTree")
-  nnoremap <Leader>k :NERDTreeToggle<CR>
-  nnoremap <Leader>r :NERDTreeFind<CR>
+" if exists("b:NERDTree")
+  nnoremap <Leader>e :NERDTreeToggle<CR>
+  nnoremap <Leader>k :NERDTreeFind<CR>
 
   " NERDTree Settings "
   " show hidden files
@@ -426,7 +438,7 @@ if exists("b:NERDTree")
   let NERDTreeDirArrows = 1
   " close vim if NERDTree is last remaining window
   autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-endif
+" endif
 
 " NERDCommenter Settings "
 " add space after comment character
@@ -483,7 +495,6 @@ hi PmenuSel ctermbg=19 guibg=#0000af
 " command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 
 " command! -bang -nargs=* FA call fzf#vim#grep(g:rg_command_find_all .shellescape(<q-args>), 1, <bang>0)
-" nnoremap <Leader>f :Rg!<CR>
 
 let g:fuf_keyOpen = "<C-l>"
 let g:fuf_keyOpenTabpage = "<CR>"

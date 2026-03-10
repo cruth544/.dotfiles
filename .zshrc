@@ -43,3 +43,4 @@ set -o emacs
 # Below here is an area for other commands added by outside programs or
 # commands. Attempt to reserve this area for their use!
 ##########################################################################
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
